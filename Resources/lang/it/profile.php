@@ -7,14 +7,14 @@ return [
     'profile' => 'Profilo',
     'my_profile' => 'Il mio profilo',
     'subheading' => 'Gestisci il tuo profilo.',
-    'fields'=>[
-        'type'=>['label' => 'Tipo',],
-        'user'=>[
-            'name'=>['label'=>'Nome Utente',],
+    'fields' => [
+        'type' => ['label' => 'Tipo'],
+        'user' => [
+            'name' => ['label' => 'Nome Utente'],
         ],
-        'photo'=>['label' => 'Foto',],
+        'photo' => ['label' => 'Foto'],
     ],
-    
+
     'personal_info' => [
         'heading' => 'Informazioni personali',
         'subheading' => 'Gestisci le tue informazioni personali.',
