@@ -17,12 +17,7 @@ class ListPermissions extends XotBaseListRecords
 {
     protected static string $resource = PermissionResource::class;
 
-    protected function getTableHeaderActions(): array
-    {
-        return [
-            TableLayoutToggleTableAction::make(),
-        ];
-    }
+    
 
     protected function getHeaderActions(): array
     {
