@@ -91,8 +91,12 @@ class ListProfiles extends XotBaseListRecords
         return [
             // 'type' => TextColumn::make('type')
             //    ->sortable(),
+            'type' => TextColumn::make('type')
+                //->label(static::trans('fields.type'))
+                ->sortable(),
 
             'user_name' => TextColumn::make('user.name')
+                //->label(static::trans('fields.user_name'))
                 ->sortable()
                 ->searchable()
                 ->default(
@@ -172,7 +176,7 @@ class ListProfiles extends XotBaseListRecords
                             ->each
                             ->each(
                                 function ($user): void {
-                                    Assert::isInstanceOf($user, Model::class, '['.__LINE__.']['.class_basename($this).']');
+                                    Assert::isInstanceOf($user, Model::class, '[' . __LINE__ . '][' . class_basename($this) . ']');
                                     $user->update(['is_active' => true]);
                                 }
                             );
@@ -188,7 +192,7 @@ class ListProfiles extends XotBaseListRecords
                             ->each
                             ->each(
                                 function ($user): void {
-                                    Assert::isInstanceOf($user, Model::class, '['.__LINE__.']['.class_basename($this).']');
+                                    Assert::isInstanceOf($user, Model::class, '[' . __LINE__ . '][' . class_basename($this) . ']');
                                     $user->update(['is_active' => true]);
                                 }
                             );
@@ -205,9 +209,10 @@ class ListProfiles extends XotBaseListRecords
                 ->trueLabel(static::trans('filters.is_active.active'))
                 ->falseLabel(static::trans('filters.is_active.inactive'))
                 ->queries(
-                    true: static fn (Builder $query) => $query->where('is_active', '=', true),
-                    false: static fn (Builder $query) => $query->where('is_active', '=', false),
-                ),
+                    true: static fn(Builder $query) => $query->where('is_active', '=', true),
+                    false: static fn(Builder $query) => $query->where('is_active', '=', false),
+                )
+                ->label(static::trans('fields.is_active')),
         ];
     }
 }
