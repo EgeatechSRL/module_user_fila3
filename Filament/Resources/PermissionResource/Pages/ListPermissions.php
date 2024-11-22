@@ -8,7 +8,6 @@ use Filament\Actions\CreateAction;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Actions\BulkAction;
 use Illuminate\Database\Eloquent\Collection;
-use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 use Modules\User\Filament\Resources\PermissionResource;
 use Modules\Xot\Filament\Pages\XotBaseListRecords;
 use Webmozart\Assert\Assert;
@@ -16,8 +15,6 @@ use Webmozart\Assert\Assert;
 class ListPermissions extends XotBaseListRecords
 {
     protected static string $resource = PermissionResource::class;
-
-    
 
     protected function getHeaderActions(): array
     {

@@ -21,7 +21,6 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rules\Password;
-use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 use Modules\User\Filament\Actions\ChangePasswordAction;
 use Modules\User\Filament\Resources\UserResource;
 use Modules\User\Filament\Resources\UserResource\Widgets\UserOverview;
@@ -162,8 +161,6 @@ class ListUsers extends XotBaseListRecords
                 direction: 'DESC',
             );
     }
-
-    
 
     protected function getHeaderActions(): array
     {

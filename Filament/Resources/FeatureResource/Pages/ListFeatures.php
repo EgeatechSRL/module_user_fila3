@@ -13,7 +13,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
-use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 use Modules\User\Filament\Resources\FeatureResource;
 use Modules\Xot\Filament\Pages\XotBaseListRecords;
 
@@ -89,6 +88,4 @@ class ListFeatures extends XotBaseListRecords
             CreateAction::make(),
         ];
     }
-
-    
 }

@@ -192,8 +192,6 @@ class ListProfiles extends XotBaseListRecords
         // ->striped($this->isTableStriped())
     }
 
-
-
     protected function getHeaderActions(): array
     {
         return [
