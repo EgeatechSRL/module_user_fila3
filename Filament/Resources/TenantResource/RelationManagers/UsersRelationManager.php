@@ -6,11 +6,12 @@ namespace Modules\User\Filament\Resources\TenantResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
 use Modules\Xot\Filament\Traits\HasXotTable;
+use Filament\Resources\RelationManagers\RelationManager;
+use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
 
-class UsersRelationManager extends RelationManager
+class UsersRelationManager extends XotBaseRelationManager
 {
     use HasXotTable;
     protected static string $relationship = 'users';

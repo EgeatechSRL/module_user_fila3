@@ -6,10 +6,11 @@ namespace Modules\User\Filament\Resources\UserResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
-use Modules\User\Filament\Resources\TenantResource\Pages\ListTenants;
 use Modules\Xot\Filament\Traits\HasXotTable;
+use Filament\Resources\RelationManagers\RelationManager;
+use Modules\User\Filament\Resources\TenantResource\Pages\ListTenants;
+use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
 
 /**
  * Manages the relationship between users and tenants.
@@ -17,7 +18,7 @@ use Modules\Xot\Filament\Traits\HasXotTable;
  * This class provides the form schema and table configuration for the "tenants" relationship
  * with strong typing and enhanced structure for stability and professionalism.
  */
-class TenantsRelationManager extends RelationManager
+class TenantsRelationManager extends XotBaseRelationManager
 {
     use HasXotTable;
     protected static string $relationship = 'tenants';

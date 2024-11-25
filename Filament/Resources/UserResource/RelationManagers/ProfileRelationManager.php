@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\UserResource\RelationManagers;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Table;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Resources\RelationManagers\RelationManager;
+use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
 
-class ProfileRelationManager extends RelationManager
+class ProfileRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'profile';
 
