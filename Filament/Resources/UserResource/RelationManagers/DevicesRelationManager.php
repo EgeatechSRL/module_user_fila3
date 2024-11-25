@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\UserResource\RelationManagers;
 
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Modules\User\Filament\Resources\DeviceResource;
-use Filament\Resources\RelationManagers\RelationManager;
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
 
 class DevicesRelationManager extends XotBaseRelationManager

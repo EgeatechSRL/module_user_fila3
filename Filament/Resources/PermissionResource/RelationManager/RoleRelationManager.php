@@ -8,11 +8,10 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\PermissionResource\RelationManager;
 
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Forms\Form;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
 
 class RoleRelationManager extends XotBaseRelationManager

@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\UserResource\RelationManagers;
 
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Modules\Xot\Datas\XotData;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Tables\Actions\AttachAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Actions\AttachAction;
-use Filament\Tables\Actions\DetachAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Table;
+use Modules\Xot\Datas\XotData;
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
 
 class RolesRelationManager extends XotBaseRelationManager

@@ -7,10 +7,9 @@ namespace Modules\User\Filament\Resources\UserResource\RelationManagers;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Modules\Xot\Filament\Traits\HasXotTable;
-use Filament\Resources\RelationManagers\RelationManager;
 use Modules\User\Filament\Resources\TenantResource\Pages\ListTenants;
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
+use Modules\Xot\Filament\Traits\HasXotTable;
 
 /**
  * Manages the relationship between users and tenants.
