@@ -44,6 +44,7 @@ class TeamsRelationManager extends XotBaseRelationManager
         return $table->getFilters();
     }
 
+    /*
     public function getHeaderActions(Table $table): array
     {
         $actions = [
@@ -74,7 +75,8 @@ class TeamsRelationManager extends XotBaseRelationManager
 
         return array_merge($actions, $table->getActions());
     }
-
+        */
+    /*
     public function table(Table $table): Table
     {
         $table = TeamResource::table($table);
@@ -94,4 +96,5 @@ class TeamsRelationManager extends XotBaseRelationManager
             );
         // ->defaultSort('users.created_at', 'desc');
     }
+        */
 }
