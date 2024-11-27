@@ -1,13 +1,14 @@
-<?php return array (
-  'fields' => 
-  array (
-    'login_at' => 
-    array (
-      'label' => 'login_at',
-    ),
-    'logout_at' => 
-    array (
-      'label' => 'logout_at',
-    ),
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'fields' => [
+        'login_at' => [
+            'label' => 'login_at',
+        ],
+        'logout_at' => [
+            'label' => 'logout_at',
+        ],
+    ],
+];
