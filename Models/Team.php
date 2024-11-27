@@ -47,6 +47,4 @@ namespace Modules\User\Models;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Team whereUuid($value)
  * @mixin \Eloquent
  */
-class Team extends BaseTeam
-{
-}
+class Team extends BaseTeam {}
