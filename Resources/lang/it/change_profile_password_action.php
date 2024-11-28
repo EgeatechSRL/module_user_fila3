@@ -1,11 +1,13 @@
-<?php
-
-declare(strict_types=1);
-
-return [
-    'fields' => [
-        'new_password_confirmation' => [
-            'fields' => 'new_password_confirmation',
-        ],
-    ],
-];
+<?php return array (
+  'fields' => 
+  array (
+    'new_password_confirmation' => 
+    array (
+      'fields' => 'new_password_confirmation',
+      'label' => 
+      array (
+        'fields' => 'new_password_confirmation',
+      ),
+    ),
+  ),
+);
