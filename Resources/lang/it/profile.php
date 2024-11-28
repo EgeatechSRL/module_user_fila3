@@ -9,17 +9,29 @@ return array(
         'type' =>
         array(
             'label' => 'Tipo',
+            'fields' =>
+            array(
+                'label' => 'Tipo',
+            ),
         ),
         'user' =>
         array(
             'name' =>
             array(
                 'label' => 'Nome Utente',
+                'fields' =>
+                array(
+                    'label' => 'Nome Utente',
+                ),
             ),
         ),
         'photo' =>
         array(
             'label' => 'Foto',
+            'fields' =>
+            array(
+                'label' => 'Foto',
+            ),
         ),
         'id' =>
         array(
@@ -36,10 +48,26 @@ return array(
         'first_name' =>
         array(
             'label' => 'first_name',
+            'fields' =>
+            array(
+                'label' => 'first_name',
+            ),
         ),
         'last_name' =>
         array(
             'label' => 'last_name',
+            'fields' =>
+            array(
+                'label' => 'last_name',
+            ),
+        ),
+        'email' =>
+        array(
+            'fields' => 'email',
+        ),
+        'is_active' =>
+        array(
+            'fields' => 'is_active',
         ),
     ),
     'personal_info' =>
