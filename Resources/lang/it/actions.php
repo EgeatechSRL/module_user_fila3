@@ -10,6 +10,7 @@ return [
     'edit' => 'Modifica',
     'delete' => 'Cancella',
     'detach' => 'Scollega',
+    'replicate' => 'Duplica',
     'row_actions' => 'Azioni',
     'delete_selected' => 'Elimina Selezionati',
     'confirm_detach' => 'Sei sicuro di voler scollegare questo utente?',
