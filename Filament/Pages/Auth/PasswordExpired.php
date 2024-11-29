@@ -63,7 +63,6 @@ class PasswordExpired extends Page implements HasForms
     public function getResetPasswordFormAction(): Action
     {
         return Action::make('resetPassword')
-
             ->submit('resetPassword');
     }
 

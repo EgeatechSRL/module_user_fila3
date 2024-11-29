@@ -75,6 +75,7 @@ class PermissionResource extends XotBaseResource
                                 Grid::make(2)->schema(
                                     [
                                         TextInput::make('name'),
+                                        TextInput::make('name'),
                                         Select::make('guard_name')
 
                                             ->options($guard_names)
@@ -107,7 +108,6 @@ class PermissionResource extends XotBaseResource
                         ->searchable(),
                     TextColumn::make('guard_name')
                         ->toggleable(isToggledHiddenByDefault: $isToggledHiddenByDefault)
-
                         ->searchable(),
                 ]
             )
@@ -132,8 +132,7 @@ class PermissionResource extends XotBaseResource
                             }
                         });
                     }),
-                */
-                ]
+                */]
             )->actions(
                 [
                     EditAction::make(),
@@ -149,7 +148,7 @@ class PermissionResource extends XotBaseResource
                         ->action(
                             static function (Collection $collection, array $data): void {
                                 foreach ($collection as $record) {
-                                    Assert::isInstanceOf($record, Permission::class, '['.__LINE__.']['.__CLASS__.']');
+                                    Assert::isInstanceOf($record, Permission::class, '[' . __LINE__ . '][' . __CLASS__ . ']');
                                     $record->roles()->sync($data['role']);
                                     $record->save();
                                 }
@@ -158,7 +157,6 @@ class PermissionResource extends XotBaseResource
                         ->form(
                             [
                                 Select::make('role')
-
                                     ->options(Role::query()->pluck('name', 'id'))
                                     ->required(),
                             ]
