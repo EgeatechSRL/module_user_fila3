@@ -169,7 +169,6 @@ class PasswordExpiredWidget extends Widget implements HasForms
     {
         return TextInput::make('current_password')
             // ->label(__('user::otp.form.current_password.label'))
-
             ->password()
             // ->revealable(filament()->arePasswordsRevealable())
             ->revealable()
