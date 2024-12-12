@@ -4,80 +4,57 @@ return array(
     'profile' => 'Profilo',
     'my_profile' => 'Il mio profilo',
     'subheading' => 'Gestisci il tuo profilo.',
-    'fields' =>
-    array(
-        'type' =>
-        array(
+    'fields' => [
+        'type' => [
             'label' => 'Tipo',
-            'fields' =>
-            array(
-                'label' => 'Tipo',
-            ),
-        ),
-        'user' =>
-        array(
-            'name' =>
-            array(
+            'placeholder' => 'Seleziona il tipo',
+        ],
+        'user' => [
+            'name' => [
                 'label' => 'Nome Utente',
-                'fields' =>
-                array(
-                    'label' => 'Nome Utente',
-                ),
-            ),
-        ),
-        'photo' =>
-        array(
+                'placeholder' => 'Inserisci il nome utente',
+            ],
+        ],
+        'photo' => [
             'label' => 'Foto',
-            'fields' =>
-            array(
-                'label' => 'Foto',
-            ),
-        ),
-        'id' =>
-        array(
-            'label' => 'id',
-        ),
-        'ente' =>
-        array(
-            'label' => 'ente',
-        ),
-        'matr' =>
-        array(
-            'label' => 'matr',
-        ),
-        'first_name' =>
-        array(
-            'label' => 'first_name',
-            'fields' =>
-            array(
-                'label' => 'first_name',
-            ),
-        ),
-        'last_name' =>
-        array(
-            'label' => 'last_name',
-            'fields' =>
-            array(
-                'label' => 'last_name',
-            ),
-        ),
-        'email' =>
-        array(
-            'fields' => 'email',
-        ),
-        'is_active' =>
-        array(
-            'fields' => 'is_active',
-        ),
-    ),
-    'personal_info' =>
-    array(
+            'placeholder' => 'Carica una foto',
+        ],
+        'id' => [
+            'label' => 'ID',
+            'placeholder' => 'Inserisci l\'ID',
+        ],
+        'ente' => [
+            'label' => 'Ente',
+            'placeholder' => 'Inserisci l\'ente',
+        ],
+        'matr' => [
+            'label' => 'Matr',
+            'placeholder' => 'Inserisci il matricola',
+        ],
+        'first_name' => [
+            'label' => 'Nome',
+            'placeholder' => 'Inserisci il nome',
+        ],
+        'last_name' => [
+            'label' => 'Cognome',
+            'placeholder' => 'Inserisci il cognome',
+        ],
+        'email' => [
+            'label' => 'Email',
+            'placeholder' => 'Inserisci l\'email',
+        ],
+        'is_active' => [
+            'label' => 'Attivo?',
+            'placeholder' => 'Seleziona se attivo',
+        ],
+    ],
+    'personal_info' => [
         'heading' => 'Informazioni personali',
         'subheading' => 'Gestisci le tue informazioni personali.',
-        'submit' =>
-        array(
+        'submit' => [
             'label' => 'Aggiorna',
-        ),
+            'placeholder' => 'Aggiorna il profilo',
+        ],
         'notify' => 'Profilo aggiornato correttamente!',
-    ),
+    ],
 );
