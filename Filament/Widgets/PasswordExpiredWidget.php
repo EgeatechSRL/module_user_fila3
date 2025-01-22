@@ -130,18 +130,20 @@ class PasswordExpiredWidget extends Widget implements HasForms
         }
 
         $pwd_data = PasswordData::make();
-        // get OTP expiration minutes from PasswordData
-        $otpExpirationMinutes = $pwd_data->otp_expiration_minutes;
+        if ($user->is_otp) {
+            // get OTP expiration minutes from PasswordData
+            $otpExpirationMinutes = $pwd_data->otp_expiration_minutes;
 
-        // Check if OTP is expired using updated_at
-        if ($user->updated_at && now()->greaterThan($user->updated_at->addMinutes($otpExpirationMinutes))) {
-            Notification::make()
-                ->title(__('user::otp.notifications.otp_expired.title'))
-                ->body(__('user::otp.notifications.otp_expired.body'))
-                ->danger()
-                ->send();
+            // Check if OTP is expired using updated_at
+            if ($user->updated_at && now()->greaterThan($user->updated_at->addMinutes($otpExpirationMinutes))) {
+                Notification::make()
+                    ->title(__('user::otp.notifications.otp_expired.title'))
+                    ->body(__('user::otp.notifications.otp_expired.body'))
+                    ->danger()
+                    ->send();
 
-            return null;
+                return null;
+            }
         }
 
         // get password expiry date and time

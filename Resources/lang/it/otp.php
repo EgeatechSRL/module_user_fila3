@@ -38,11 +38,12 @@ return [
 
     'mail' => [
         'subject' => 'Codice OTP',
-        'greeting' => 'Ciao!',
+        'greeting' => 'Gentile utente,',
         'line1' => 'Il tuo codice OTP è: :code',
         'line2' => 'Questo codice sarà valido per :minutes minuti.',
         'line3' => 'Se non hai richiesto un codice, ignora questa email.',
-        'salutation' => 'Cordiali saluti, :app_name',
+        'line4' => 'Potrai accedere al tuo account da <a href=":app_url">qui</a>',
+        'salutation' => 'Cordiali saluti, il team di :app_name',
     ],
 
     'view' => [

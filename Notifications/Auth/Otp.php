@@ -20,9 +20,7 @@ class Otp extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public UserContract $user, public string $code)
-    {
-    }
+    public function __construct(public UserContract $user, public string $code) {}
 
     /**
      * Get the notification's delivery channels.
@@ -57,7 +55,7 @@ class Otp extends Notification implements ShouldQueue
             ->line(__('user::otp.mail.line1', ['code' => $this->code]))
             ->line(__('user::otp.mail.line2', ['minutes' => $pwd->otp_expiration_minutes]))
             ->line(__('user::otp.mail.line3'))
-            ->action('vai', url('/'))
+            //->action('Clicca qui per accedere', config('app.url'))
             ->salutation(__('user::otp.mail.salutation', ['app_name' => $app_name]));
     }
 
@@ -68,7 +66,6 @@ class Otp extends Notification implements ShouldQueue
      */
     public function toArray(UserContract $notifiable)
     {
-        return [
-        ];
+        return [];
     }
 }

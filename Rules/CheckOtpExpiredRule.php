@@ -25,6 +25,10 @@ class CheckOtpExpiredRule implements ValidationRule
             return;
         }
 
+        if ($user->is_otp !== null && $user->is_otp === false) {
+            return;
+        }
+
         // Get OTP expiration minutes from PasswordData
         $pwd_data = PasswordData::make();
         $otpExpirationMinutes = $pwd_data->otp_expiration_minutes;
