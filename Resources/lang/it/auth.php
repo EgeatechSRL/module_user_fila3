@@ -27,7 +27,7 @@ return [
         'sub_heading' => 'La tua password è scaduta, per favore crea una nuova password',
         'fields' => [
             'current_password' => [
-                'label' => 'Current Password',
+                'label' => 'Password Corrente',
                 'validation_attribute' => 'current_password',
             ],
             'password' => [
@@ -40,7 +40,7 @@ return [
         ],
         'form' => [
             'current_password' => [
-                'label' => 'Current Password',
+                'label' => 'Password Corrente',
                 'validation_attribute' => 'current_password',
             ],
             'password' => [

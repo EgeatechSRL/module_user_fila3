@@ -102,7 +102,7 @@ class PasswordData extends Data
 
     public function getHelperText(): string
     {
-        $msg = 'La password deve essere composta da minimo '.$this->min.' caratteri';
+        $msg = 'La password deve essere composta da minimo ' . $this->min . ' caratteri';
         $msg .= ', almeno una lettera maiuscola';
         $msg .= ', una minuscola';
         $msg .= ', un numero';
@@ -144,7 +144,7 @@ class PasswordData extends Data
     public function getPasswordConfirmationFormComponent(): Component
     {
         return TextInput::make('passwordConfirmation')
-            ->label(__('filament-panels::pages/auth/edit-profile.form.password_confirmation.label'))
+            ->label(__('user::fields.confirm_password.label'))
             ->password()
             // ->revealable(filament()->arePasswordsRevealable())
             ->revealable(true)
