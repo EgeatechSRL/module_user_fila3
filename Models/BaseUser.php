@@ -258,8 +258,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         if (is_string($res)) {
             return $res;
         }
-        dddx($socialiteUser);
-        throw new \Exception('SocialiteUser field ['.$field.'] not found');
+        throw new \Exception('SocialiteUser field [' . $field . '] not found');
     }
 
     // ----------------------
@@ -278,7 +277,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
 
     public function getFullNameAttribute(?string $value): ?string
     {
-        return $value ?? $this->first_name.' '.$this->last_name;
+        return $value ?? $this->first_name . ' ' . $this->last_name;
     }
 
     public function getNameAttribute(?string $value): ?string
@@ -288,10 +287,10 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         }
         $name = Str::of($this->email)->before('@')->toString();
         $i = 1;
-        $value = $name.'-'.$i;
+        $value = $name . '-' . $i;
         while (null !== self::firstWhere(['name' => $value])) {
             ++$i;
-            $value = $name.'-'.$i;
+            $value = $name . '-' . $i;
         }
         $this->update(['name' => $value]);
 
