@@ -45,7 +45,6 @@ class ProcessCallbackController extends Controller
         if (null === $oauthUser) {
             return app(RedirectToLoginAction::class)->execute('auth.login-failed');
         }
-
         // Verify if user is allowed
         if (! app(IsUserAllowedAction::class)->execute($oauthUser)) {
             UserNotAllowed::dispatch($oauthUser);

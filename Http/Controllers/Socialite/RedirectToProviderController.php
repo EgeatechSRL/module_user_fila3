@@ -32,15 +32,17 @@ class RedirectToProviderController extends Controller
         $scopes = App(GetProviderScopesAction::class)->execute($provider);
         $socialiteProvider = Socialite::with($provider);
         if (! is_object($socialiteProvider)) {
-            throw new \Exception('wip');
+            throw new \Exception('Provider not supported by Socialite');
         }
 
         if (! method_exists($socialiteProvider, 'scopes')) {
-            throw new \Exception('wip');
+            throw new \Exception('Scopes not supported on this provider');
         }
 
         return $socialiteProvider
             ->scopes($scopes)
+            // Force the refresh_token to be sent every time
+            // ->with(['access_type' => 'offline', 'prompt' => 'consent select_account'])
             ->redirect();
     }
 }

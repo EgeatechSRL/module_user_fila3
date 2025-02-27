@@ -61,6 +61,7 @@ class SocialiteUser extends BaseModel
         'provider',
         'provider_id',
         'token',
+        'refresh_token',
         'name',
         'email',
         'avatar',

@@ -22,16 +22,19 @@ class RetrieveSocialiteUserAction
      */
     public function execute(string $provider, SocialiteUserContract $user): ?SocialiteUser
     {
-        $res = SocialiteUser::query()
+        $databaseUser = SocialiteUser::query()
             ->with(['user'])
             ->where('provider', $provider)
             ->where('provider_id', $user->getId())
             ->first();
 
-        if ($res !== null) {
-            $res->token = $user->token;
-            $res->save();
-            return $res->refresh();
+        if ($databaseUser !== null) {
+            $databaseUser->token = $user->token;
+            if (!is_null($user->refreshToken)) {
+                $databaseUser->refresh_token = $user->refreshToken;
+            }
+            $databaseUser->save();
+            return $databaseUser->refresh();
         }
 
         return null;
