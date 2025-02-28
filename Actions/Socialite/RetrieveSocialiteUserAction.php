@@ -30,6 +30,7 @@ class RetrieveSocialiteUserAction
 
         if ($databaseUser !== null) {
             $databaseUser->token = $user->token;
+            $databaseUser->avatar = $user->avatar;
             if (!is_null($user->refreshToken)) {
                 $databaseUser->refresh_token = $user->refreshToken;
             }

@@ -42,7 +42,7 @@ class RedirectToProviderController extends Controller
         return $socialiteProvider
             ->scopes($scopes)
             // Force the refresh_token to be sent every time
-            // ->with(['access_type' => 'offline', 'prompt' => 'consent select_account'])
+            ->with(['access_type' => 'offline', 'prompt' => 'consent select_account'])
             ->redirect();
     }
 }

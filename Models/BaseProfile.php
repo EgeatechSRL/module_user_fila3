@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Modules\User\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
+
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Modules\User\Models\Traits\IsProfileTrait;
 use Modules\Xot\Contracts\ProfileContract;
 use Parental\HasChildren;
@@ -103,31 +106,28 @@ abstract class BaseProfile extends BaseModel implements ProfileContract
 
     public function getAvatarUrl(): string
     {
-        // return filament()->getUserAvatarUrl($this);
-        $avatar = $this->getFirstMediaUrl();
+        $user = Auth::user();
+        $avatar = '';
 
-        if (mb_strlen($avatar) > 5) {
-            return $avatar;
+        $socialiteUser = SocialiteUser::query()
+            ->with(['user'])
+            ->where('provider', 'google')
+            ->where('user_id', $user->id)
+            ->first();
+
+        if (! is_null($socialiteUser)) {
+            $avatar = $socialiteUser->avatar;
+        } else {
+            $name = str(Filament::getNameForDefaultAvatar($user))
+                ->trim()
+                ->explode(' ')
+                ->map(fn(string $segment): string => filled($segment) ? mb_substr($segment, 0, 1) : '')
+                ->join(' ');
+
+            $avatar = 'https://source.boringavatars.com/beam/120/' . urlencode($name);
         }
 
-        $email = trim((string) $this->email);
-        // 'MyEmailAddress@example.com'
-        $email = mb_strtolower($email);
-        // 'myemailaddress@example.com'
-        $hash = hash('sha256', $email);
-        $avatar = 'https://gravatar.com/avatar/'.$hash.'?s=64';
-
         return $avatar;
-
-        // https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80
-
-        // in caso eseguire php artisan module:publish
-        // dddx($this);
-        // dddx(asset('blog/img/no_user.webp'));
-        //    return asset('modules/blog/img/no_user.webp');
-        // }
-
-        // return $this->getFirstMediaUrl();
     }
 
     /** @return array<string, string> */
