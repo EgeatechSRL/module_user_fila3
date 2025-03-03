@@ -7,12 +7,14 @@ namespace Modules\User\Models;
 // use Illuminate\Database\Eloquent\Relations\HasOne;
 
 use Filament\Facades\Filament;
+use Filament\Support\Facades\FilamentColor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Modules\User\Models\Traits\IsProfileTrait;
 use Modules\Xot\Contracts\ProfileContract;
 use Parental\HasChildren;
+use Spatie\Color\Rgb;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
@@ -109,22 +111,22 @@ abstract class BaseProfile extends BaseModel implements ProfileContract
         $user = Auth::user();
         $avatar = '';
 
-        $socialiteUser = SocialiteUser::query()
-            ->with(['user'])
-            ->where('provider', 'google')
+        $socialiteUser = SocialiteUser::where('provider', 'google')
             ->where('user_id', $user->id)
             ->first();
 
         if (! is_null($socialiteUser)) {
             $avatar = $socialiteUser->avatar;
         } else {
-            $name = str(Filament::getNameForDefaultAvatar($user))
+            $name = str($user->first_name . ' ' . $user->last_name)
                 ->trim()
                 ->explode(' ')
                 ->map(fn(string $segment): string => filled($segment) ? mb_substr($segment, 0, 1) : '')
                 ->join(' ');
 
-            $avatar = 'https://source.boringavatars.com/beam/120/' . urlencode($name);
+            $backgroundColor = Rgb::fromString('rgb(' . FilamentColor::getColors()['gray'][950] . ')')->toHex();
+
+            $avatar = 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=FFFFFF&background=' . str($backgroundColor)->after('#');
         }
 
         return $avatar;

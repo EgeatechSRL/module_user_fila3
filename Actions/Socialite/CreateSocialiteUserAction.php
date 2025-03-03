@@ -31,6 +31,8 @@ class CreateSocialiteUserAction
             // 'nickname' => $oauthUser->getNickname(),
             'email' => $oauthUser->getEmail(),
             'avatar' => $oauthUser->getAvatar(),
+            'token' => $oauthUser->token,
+            'refresh_token' => $oauthUser->refreshToken,
         ];
 
         return SocialiteUser::create(attributes: $attributes);
