@@ -11,6 +11,8 @@ namespace Modules\User\Http\Controllers\Socialite;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
 use Modules\User\Actions\Socialite\GetProviderScopesAction;
 use Modules\User\Actions\Socialite\IsProviderConfiguredAction;
@@ -39,10 +41,15 @@ class RedirectToProviderController extends Controller
             throw new \Exception('Scopes not supported on this provider');
         }
 
+        Session::put('auth.relayUrl', URL::previous());
+
         return $socialiteProvider
             ->scopes($scopes)
             // Force the refresh_token to be sent every time
-            ->with(['access_type' => 'offline', 'prompt' => 'consent select_account'])
+            ->with([
+                'access_type' => 'offline',
+                'prompt' => 'consent select_account',
+            ])
             ->redirect();
     }
 }

@@ -11,6 +11,7 @@ namespace Modules\User\Actions\Socialite;
 // use DutchCodingCompany\FilamentSocialite\FilamentSocialite;
 use Filament\Facades\Filament;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 use Modules\User\Events\SocialiteUserConnected;
 use Modules\User\Models\SocialiteUser;
 use Spatie\QueueableAction\QueueableAction;
@@ -31,6 +32,9 @@ class LoginUserAction
         // session()->regenerate();
 
         // return redirect()->intended(Filament::getUrl());
-        return redirect()->intended('/');
+        $relayUrl = Session::get('auth.relayUrl', url('/'));
+        Session::forget('auth.relayUrl');
+
+        return redirect()->intended($relayUrl);
     }
 }
