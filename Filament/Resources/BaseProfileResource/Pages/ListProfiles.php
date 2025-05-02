@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\BaseProfileResource\Pages;
 
+use Filament\Actions\CreateAction;
 use Filament\Tables;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\IconColumn;
@@ -24,6 +25,18 @@ use Webmozart\Assert\Assert;
 class ListProfiles extends XotBaseListRecords
 {
     protected static string $resource = BaseProfileResource::class;
+    protected static bool $canChangePassword = true;
+    protected static bool $canToggleActive = true;
+
+    protected function shouldShowChangePasswordAction(): bool
+    {
+        return static::$canChangePassword;
+    }
+
+    protected function shouldShowToggleActiveAction(): bool
+    {
+        return static::$canToggleActive;
+    }
 
     public function getModelLabel(): string
     {
@@ -131,14 +144,15 @@ class ListProfiles extends XotBaseListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 
     protected function getTableActions(): array
     {
         return [
-            ChangeProfilePasswordAction::make(),
+            ChangeProfilePasswordAction::make()
+            ->visible($this->shouldShowChangePasswordAction()),
             ...parent::getTableActions(),
         ];
     }
@@ -163,7 +177,8 @@ class ListProfiles extends XotBaseListRecords
                     }),
                 */
             // ]),
-            Tables\Actions\DeleteBulkAction::make(),
+            Tables\Actions\DeleteBulkAction::make()
+            ->visible($this->shouldShowDeleteAction()),
             BulkAction::make('bulk_activate')
                 ->action(
                     function (Collection $collection) {
@@ -177,7 +192,8 @@ class ListProfiles extends XotBaseListRecords
                                 }
                             );
                     }
-                ),
+                )
+                ->visible($this->shouldShowToggleActiveAction()),
 
             BulkAction::make('bulk_inactivate')
                 ->action(
@@ -192,7 +208,8 @@ class ListProfiles extends XotBaseListRecords
                                 }
                             );
                     }
-                ),
+                )
+                ->visible($this->shouldShowToggleActiveAction()),
         ];
     }
 
