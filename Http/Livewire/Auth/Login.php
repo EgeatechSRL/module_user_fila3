@@ -6,6 +6,7 @@ namespace Modules\User\Http\Livewire\Auth;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Livewire\Component;
 use Modules\Xot\Actions\File\ViewCopyAction;
 use Modules\Xot\Datas\XotData;
@@ -40,9 +41,15 @@ class Login extends Component
             $main_module = XotData::make()->main_module;
             $main_module_low = strtolower($main_module);
 
-            $this->addError('email', trans($main_module_low.'::auth.failed'));
+            $this->addError('email', trans($main_module_low . '::auth.failed'));
 
             return;
+        }
+
+        if (Schema::hasColumn('profiles', 'logged_with_oauth')) {
+            $profile = Auth::user()->profile;
+            $profile->logged_with_oauth = false;
+            $profile->save();
         }
 
         return redirect()->intended(route('home'));

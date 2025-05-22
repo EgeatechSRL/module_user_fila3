@@ -11,6 +11,8 @@ namespace Modules\User\Actions\Socialite;
 // use DutchCodingCompany\FilamentSocialite\FilamentSocialite;
 use Filament\Facades\Filament;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Modules\User\Events\SocialiteUserConnected;
 use Modules\User\Models\SocialiteUser;
@@ -34,6 +36,12 @@ class LoginUserAction
         // return redirect()->intended(Filament::getUrl());
         $relayUrl = Session::get('auth.relayUrl', url('/'));
         Session::forget('auth.relayUrl');
+
+        if (Schema::hasColumn('profiles', 'logged_with_oauth')) {
+            $profile = Auth::user()->profile;
+            $profile->logged_with_oauth = true;
+            $profile->save();
+        }
 
         return redirect()->intended($relayUrl);
     }
