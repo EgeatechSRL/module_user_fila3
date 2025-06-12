@@ -40,12 +40,12 @@
     "require": {
         "flowframe/laravel-trend": "*",
         "jenssegers/agent": "*",
-        "laravel/passport": "*",
+        "laravel/passport": "12.3.1",
         "socialiteproviders/auth0": "*",
         "spatie/laravel-personal-data-export": "*"
     },
     "require-dev": {
-        
+
     },
     "repositories": [
         {
