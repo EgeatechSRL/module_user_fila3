@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\BaseProfileResource\Pages;
 
-use Filament\Actions\CreateAction;
 use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Support\Arr;
+use Webmozart\Assert\Assert;
+use Modules\Xot\Datas\XotData;
+use Filament\Actions\CreateAction;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\Layout\Stack;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TernaryFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Modules\User\Filament\Actions\Profile\ChangeProfilePasswordAction;
-use Modules\User\Filament\Resources\BaseProfileResource;
-use Modules\Xot\Datas\XotData;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Columns\Layout\Stack;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\TernaryFilter;
+use Illuminate\Database\Eloquent\Collection;
 use Modules\Xot\Filament\Pages\XotBaseListRecords;
-use Webmozart\Assert\Assert;
+use Modules\User\Filament\Resources\BaseProfileResource;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Modules\User\Filament\Actions\Profile\ChangeProfilePasswordAction;
 
 class ListProfiles extends XotBaseListRecords
 {
@@ -226,5 +228,15 @@ class ListProfiles extends XotBaseListRecords
                 )
                 ->label(static::trans('fields.is_active')),
         ];
+    }
+
+    public function table(Table $table): Table
+    {
+        $table = parent::table($table);
+
+        return $table
+            ->filtersLayout(FiltersLayout::AboveContentCollapsible)
+            ->filtersFormColumns(1)
+            ->paginated([10, 25, 50]);
     }
 }
