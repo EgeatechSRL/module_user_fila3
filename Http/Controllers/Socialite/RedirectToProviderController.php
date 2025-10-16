@@ -8,31 +8,26 @@ declare(strict_types=1);
 
 namespace Modules\User\Http\Controllers\Socialite;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Modules\User\Models\SocialiteUser;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
-use Modules\User\Actions\Socialite\GetProviderScopesAction;
-use Modules\User\Actions\Socialite\IsProviderConfiguredAction;
 use Modules\User\Actions\Socialite\ValidateProviderAction;
-use Modules\User\Exceptions\ProviderNotConfigured;
+use Modules\User\Actions\Socialite\GetProviderScopesAction;
 
 class RedirectToProviderController extends Controller
 {
-    /**
-     * Undocumented function.
-     */
-    public function __invoke(Request $request, string $provider): RedirectResponse
+    public function __invoke(Request $request, string $provider, ?string $force_consent = null): RedirectResponse
     {
-        // if (! app(IsProviderConfiguredAction::class)->execute($provider)) {
-        //    throw ProviderNotConfigured::make($provider);
-        // }
         app(ValidateProviderAction::class)->execute($provider);
 
-        $scopes = App(GetProviderScopesAction::class)->execute($provider);
+        $scopes = app(GetProviderScopesAction::class)->execute($provider);
         $socialiteProvider = Socialite::with($provider);
+
         if (! is_object($socialiteProvider)) {
             throw new \Exception('Provider not supported by Socialite');
         }
@@ -43,13 +38,15 @@ class RedirectToProviderController extends Controller
 
         Session::put('auth.relayUrl', URL::previous());
 
+        $extraParams = ['access_type' => 'offline'];
+
+        if ($force_consent) {
+            $extraParams['prompt'] = 'consent';
+        }
+
         return $socialiteProvider
             ->scopes($scopes)
-            // Force the refresh_token to be sent every time
-            ->with([
-                'access_type' => 'offline',
-                'prompt' => 'consent select_account',
-            ])
+            ->with($extraParams)
             ->redirect();
     }
 }

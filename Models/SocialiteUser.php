@@ -62,9 +62,15 @@ class SocialiteUser extends BaseModel
         'provider_id',
         'token',
         'refresh_token',
+        'expires_in',
+        'token_expires_at',
         'name',
         'email',
         'avatar',
+    ];
+
+    protected $casts = [
+        'token_expires_at' => 'datetime',
     ];
 
     public function user(): BelongsTo

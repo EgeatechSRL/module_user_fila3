@@ -32,16 +32,14 @@ Route::namespace('Socialite')
     ->group(
         static function (): void {
             Route::get(
-                '/admin/login/{provider}',
-                // 'LoginController@redirectToProvider',
-                'RedirectToProviderController',
-            )
-                ->name('oauth.redirect');
+                '/admin/login/{provider}/{force_consent?}',
+                'RedirectToProviderController'
+            )->name('oauth.redirect');
+
             Route::get(
                 '/sso/{provider}/callback',
                 'ProcessCallbackController',
-            )
-                ->name('oauth.callback');
+            )->name('oauth.callback');
         }
     );
 
@@ -67,7 +65,7 @@ Route::namespace('\\')
 if (XotData::make()->register_pub_theme) {
     require 'web_tall.php';
 } else {
-    Route::get('/login', static fn () => redirect('/admin/login'))->name('login');
+    Route::get('/login', static fn() => redirect('/admin/login'))->name('login');
 }
 
 Route::get('/upgrade', 'UpgradeController');
