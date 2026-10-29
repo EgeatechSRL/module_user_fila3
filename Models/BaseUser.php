@@ -21,6 +21,7 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
+use Modules\Notify\Models\Notification as NotifyNotification;
 use Modules\User\Database\Factories\UserFactory;
 use Modules\User\Models\Traits\HasTeams;
 use Modules\Xot\Contracts\UserContract;
@@ -267,12 +268,14 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     /**
      * Get the entity's notifications.
      *
-     * @return MorphMany<Notification, $this>
+     * La tabella notifications sta sulla connessione notify, non su user.
+     *
+     * @return MorphMany<NotifyNotification, $this>
      */
     public function notifications()
     {
         // return $this->morphMany(DatabaseNotification::class, 'notifiable')->latest();
-        return $this->morphMany(Notification::class, 'notifiable')->latest();
+        return $this->morphMany(NotifyNotification::class, 'notifiable')->latest();
     }
 
     public function getFullNameAttribute(?string $value): ?string
